@@ -2,7 +2,9 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { useRouter } from 'next/navigation'
+import { logout } from '@/redux/slices/authSlice'
 import { Menu, X, Home, User, Calendar, Settings, LogOut } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
@@ -11,6 +13,14 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const { isAuthenticated, user } = useSelector((state) => state.auth)
+  const dispatch = useDispatch()
+  const router = useRouter()
+
+  const handleLogout = () => {
+    dispatch(logout())
+    setIsMenuOpen(false)
+    router.push('/')
+  }
 
   const navigation = [
     { name: 'Properties', href: '/properties', icon: Home },
@@ -71,7 +81,7 @@ export default function Header() {
                       Settings
                     </Link>
                   </DropdownMenuItem>
-                  <DropdownMenuItem>
+                  <DropdownMenuItem onClick={handleLogout}>
                     <LogOut className="mr-2 h-4 w-4" />
                     Logout
                   </DropdownMenuItem>
@@ -125,7 +135,7 @@ export default function Header() {
                       </Avatar>
                       <span className="text-sm font-medium">{user?.name || 'User'}</span>
                     </div>
-                    <Button variant="ghost" className="w-full justify-start" onClick={() => setIsMenuOpen(false)}>
+                    <Button variant="ghost" className="w-full justify-start" onClick={handleLogout}>
                       <LogOut className="mr-2 h-4 w-4" />
                       Logout
                     </Button>
