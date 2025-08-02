@@ -29,12 +29,21 @@ export default function OwnerDashboard() {
 
       try {
         const [propertiesRes, appointmentsRes] = await Promise.all([
-          fetch(`http://localhost:3001/properties?ownerId=${user.id}`),
-          fetch(`http://localhost:3001/appointments?ownerId=${user.id}`)
+          fetch(`http://localhost:3001/properties`),
+          fetch(`http://localhost:3001/appointments`)
         ])
 
-        const ownerProperties = await propertiesRes.json()
-        const ownerAppointments = await appointmentsRes.json()
+        const allProperties = await propertiesRes.json()
+        const allAppointments = await appointmentsRes.json()
+        
+        // Filter by owner ID (handle both string and number comparison)
+        const ownerProperties = allProperties.filter(p => 
+          p.ownerId == user.id || p.ownerId === user.id
+        )
+        debugger
+        const ownerAppointments = allAppointments.filter(a => 
+          a.ownerId == user.id || a.ownerId === user.id
+        )
 
         setProperties(ownerProperties)
         setAppointments(ownerAppointments)

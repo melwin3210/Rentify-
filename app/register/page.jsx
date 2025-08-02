@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { useSearchParams } from "next/navigation"
+import { useSelector } from "react-redux"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -12,6 +13,7 @@ import { CheckCircle, Loader2 } from "lucide-react"
 
 export default function RegisterPage() {
   const searchParams = useSearchParams()
+  const { user } = useSelector(state => state.auth)
   const editId = searchParams.get('edit')
   const isEditing = !!editId
   
@@ -76,7 +78,7 @@ export default function RegisterPage() {
         type: formData.type,
         price: parseInt(formData.price),
         images: formData.images ? formData.images.split(',').map(url => url.trim()) : ["https://picsum.photos/800/600"],
-        ownerId: 7, // Default owner ID
+        ownerId: user?.id, // Use logged-in user's ID
         highlight: false,
         datePosted: new Date().toISOString().split('T')[0],
         verified: false,

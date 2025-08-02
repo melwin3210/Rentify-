@@ -502,6 +502,118 @@
       "datePosted": "2025-07-31",
       "verified": true,
       "availability": "Available"
+    },
+    {
+      "id": "d90a",
+      "title": "Luxury villa",
+      "description": "test",
+      "city": "Chicago",
+      "type": "House",
+      "price": 156000,
+      "images": [
+        "https://i0.wp.com/www.innovationquarter.com/wp-content/uploads/2022/01/winston-salem-apartment-complex_1200w.jpeg?resize=1024%2C684&ssl=1"
+      ],
+      "ownerId": 7,
+      "highlight": false,
+      "datePosted": "2025-08-02",
+      "verified": true,
+      "availability": "Available"
+    },
+    {
+      "id": "a8c6",
+      "title": "Lux",
+      "description": "testrrwtt",
+      "city": "Chicago",
+      "type": "Condo",
+      "price": 1231,
+      "images": [
+        "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.innovationquarter.com%2Fapartments-lofts%2F&psig=AOvVaw2Qdp_GdyJxmDl7W9jgCmds&ust=1754222660752000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCKjKoOaK7I4DFQAAAAAdAAAAABAE"
+      ],
+      "ownerId": 7,
+      "highlight": false,
+      "datePosted": "2025-08-02",
+      "verified": false,
+      "availability": "Available"
+    },
+    {
+      "id": "b4ae",
+      "title": "jjj",
+      "description": "ascsdc",
+      "city": "Chicago",
+      "type": "Condo",
+      "price": 345,
+      "images": [
+        "https://i0.wp.com/www.innovationquarter.com/wp-content/uploads/2022/01/winston-salem-apartment-complex_1200w.jpeg?resize=1024%2C684&ssl=1"
+      ],
+      "ownerId": 7,
+      "highlight": false,
+      "datePosted": "2025-08-02",
+      "verified": false,
+      "availability": "Available"
+    },
+    {
+      "id": "b3c7",
+      "title": "edfd",
+      "description": "dcx",
+      "city": "Phoenix",
+      "type": "Condo",
+      "price": 123,
+      "images": [
+        "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.innovationquarter.com%2Fapartments-lofts%2F&psig=AOvVaw2Qdp_GdyJxmDl7W9jgCmds&ust=1754222660752000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCKjKoOaK7I4DFQAAAAAdAAAAABAE"
+      ],
+      "ownerId": 7,
+      "highlight": false,
+      "datePosted": "2025-08-02",
+      "verified": false,
+      "availability": "Available"
+    },
+    {
+      "id": "40ae",
+      "title": "bdfb",
+      "description": "dfbf",
+      "city": "Chicago",
+      "type": "House",
+      "price": 230,
+      "images": [
+        "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.innovationquarter.com%2Fapartments-lofts%2F&psig=AOvVaw2Qdp_GdyJxmDl7W9jgCmds&ust=1754222660752000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCKjKoOaK7I4DFQAAAAAdAAAAABAE"
+      ],
+      "ownerId": 7,
+      "highlight": false,
+      "datePosted": "2025-08-02",
+      "verified": false,
+      "availability": "Available"
+    },
+    {
+      "id": "4da9",
+      "title": "3456",
+      "description": "34rgfd",
+      "city": "Houston",
+      "type": "Condo",
+      "price": 345,
+      "images": [
+        "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.innovationquarter.com%2Fapartments-lofts%2F&psig=AOvVaw2Qdp_GdyJxmDl7W9jgCmds&ust=1754222660752000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCKjKoOaK7I4DFQAAAAAdAAAAABAE"
+      ],
+      "ownerId": 7,
+      "highlight": false,
+      "datePosted": "2025-08-02",
+      "verified": false,
+      "availability": "Available"
+    },
+    {
+      "id": "f672",
+      "title": "456789",
+      "description": "fghjkl",
+      "city": "Chicago",
+      "type": "Condo",
+      "price": 2345678,
+      "images": [
+        "https://i0.wp.com/www.innovationquarter.com/wp-content/uploads/2022/01/winston-salem-apartment-complex_1200w.jpeg?resize=1024%2C684&ssl=1"
+      ],
+      "ownerId": 4,
+      "highlight": false,
+      "datePosted": "2025-08-02",
+      "verified": false,
+      "availability": "Available"
     }
   ],
   "top-properties": [
