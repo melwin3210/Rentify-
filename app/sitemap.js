@@ -1,5 +1,5 @@
 export default function sitemap() {
-  const baseUrl = 'https://rentify.com'
+  const baseUrl = 'https://rentify-dlkm85cff-melwin-fernandezs-projects.vercel.app'
   
   return [
     {
