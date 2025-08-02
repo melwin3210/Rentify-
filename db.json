@@ -196,7 +196,7 @@
       "ownerId": 7,
       "highlight": false,
       "datePosted": "2025-07-18",
-      "verified": true,
+      "verified": false,
       "availability": "Not Available"
     },
     {
@@ -548,7 +548,7 @@
       "ownerId": 7,
       "highlight": false,
       "datePosted": "2025-08-02",
-      "verified": false,
+      "verified": true,
       "availability": "Available"
     },
     {
@@ -612,7 +612,7 @@
       "ownerId": 4,
       "highlight": false,
       "datePosted": "2025-08-02",
-      "verified": false,
+      "verified": true,
       "availability": "Available"
     }
   ],

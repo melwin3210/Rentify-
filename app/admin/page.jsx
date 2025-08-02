@@ -102,9 +102,15 @@ export default function AdminDashboard() {
             </Link>
           </Button>
           <Button asChild variant="outline">
-            <Link href="/properties">
+            <Link href="/admin/properties">
               <Building className="h-4 w-4 mr-2" />
-              View All Properties
+              Manage Properties
+            </Link>
+          </Button>
+          <Button asChild variant="outline">
+            <Link href="/admin/appointments">
+              <Calendar className="h-4 w-4 mr-2" />
+              View Appointments
             </Link>
           </Button>
         </div>
