@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { MapPin, Calendar, CheckCircle, XCircle, User, Phone, Mail, Clock } from "lucide-react"
 import Link from "next/link"
+import { PropertyStructuredData } from "@/components/seo/structured-data"
 
 export default function PropertyDetailsClient({ params }) {
   const { user, isAuthenticated } = useSelector(state => state.auth)
@@ -128,7 +129,9 @@ export default function PropertyDetailsClient({ params }) {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <>
+      <PropertyStructuredData property={property} />
+      <div className="container mx-auto px-4 py-8">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2 space-y-6">
           <div className="space-y-4">
@@ -329,5 +332,6 @@ export default function PropertyDetailsClient({ params }) {
         </div>
       </div>
     </div>
+    </>
   )
 }

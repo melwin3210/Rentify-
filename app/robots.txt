@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+Allow: /properties
+Allow: /properties/*
+Allow: /register
+
+Disallow: /admin
+Disallow: /admin/*
+Disallow: /owners
+Disallow: /owners/*
+Disallow: /appointments
+Disallow: /profile
+Disallow: /api/*
+
+Sitemap: https://rentify.com/sitemap.xml

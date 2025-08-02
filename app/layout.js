@@ -3,6 +3,7 @@ import "./globals.css"
 import { Providers } from "@/components/providers"
 import Header from "@/components/common/header"
 import Footer from "@/components/common/footer"
+import { WebsiteStructuredData } from "@/components/seo/structured-data"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -41,6 +42,7 @@ export default function RootLayout({ children }) {
             <Footer />
           </div>
         </Providers>
+        <WebsiteStructuredData />
         <script
           dangerouslySetInnerHTML={{
             __html: `
