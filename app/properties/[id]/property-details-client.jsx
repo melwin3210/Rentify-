@@ -220,13 +220,108 @@ export default function PropertyDetailsClient({ params }) {
                     <Link href="/login">Login Now</Link>
                   </Button>
                 </div>
-              ) : (
+              ) : !showBookingForm ? (
                 <div className="text-center">
                   <p className="text-gray-600 mb-4">Schedule a viewing with the property owner</p>
-                  <Button className="w-full">
+                  <Button 
+                    onClick={() => setShowBookingForm(true)}
+                    className="w-full"
+                  >
                     <Calendar className="w-4 h-4 mr-2" />
                     Schedule Viewing
                   </Button>
+                </div>
+              ) : bookingSuccess ? (
+                <div className="text-center space-y-4 p-4 bg-green-50 rounded-lg border border-green-200">
+                  <div className="text-green-600">
+                    <CheckCircle className="w-12 h-12 mx-auto mb-3" />
+                    <h3 className="text-lg font-semibold mb-2">🎉 Booking Confirmed!</h3>
+                    <p className="text-sm mb-4">Your appointment request has been sent to the property owner.</p>
+                  </div>
+                  
+                  <div className="bg-white p-3 rounded border text-left text-sm">
+                    <p><strong>Property:</strong> {property?.title}</p>
+                    <p><strong>Date:</strong> {new Date(selectedDate).toLocaleDateString()}</p>
+                    <p><strong>Time:</strong> {selectedTime}</p>
+                    <p><strong>Status:</strong> <span className="text-yellow-600">Pending Confirmation</span></p>
+                    {appointmentId && <p><strong>Reference:</strong> #{appointmentId}</p>}
+                  </div>
+                  
+                  <Button asChild size="sm" className="w-full">
+                    <Link href="/appointments">
+                      📅 View My Appointments
+                    </Link>
+                  </Button>
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Preferred Date</label>
+                    <input
+                      type="date"
+                      min={getMinDate()}
+                      max={getMaxDate()}
+                      value={selectedDate}
+                      onChange={(e) => setSelectedDate(e.target.value)}
+                      className="w-full p-2 border rounded-md"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Preferred Time</label>
+                    <div className="grid grid-cols-3 gap-2">
+                      {timeSlots.map((time) => (
+                        <Button
+                          key={time}
+                          variant={selectedTime === time ? "default" : "outline"}
+                          size="sm"
+                          onClick={() => setSelectedTime(time)}
+                        >
+                          <Clock className="w-3 h-3 mr-1" />
+                          {time}
+                        </Button>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Message (Optional)</label>
+                    <textarea
+                      placeholder="Any specific requirements or questions..."
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      className="w-full p-2 border rounded-md resize-none"
+                      rows={3}
+                    />
+                  </div>
+                  
+                  <div className="flex gap-2">
+                    <Button 
+                      onClick={handleBookAppointment}
+                      disabled={bookingLoading || !selectedDate || !selectedTime}
+                      className="flex-1"
+                    >
+                      {bookingLoading ? (
+                        <>
+                          <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                          Booking...
+                        </>
+                      ) : (
+                        <>📅 Confirm Booking</>
+                      )}
+                    </Button>
+                    <Button 
+                      variant="outline" 
+                      onClick={() => {
+                        setShowBookingForm(false)
+                        setSelectedDate('')
+                        setSelectedTime('')
+                        setMessage('')
+                      }}
+                    >
+                      Cancel
+                    </Button>
+                  </div>
                 </div>
               )}
             </CardContent>
