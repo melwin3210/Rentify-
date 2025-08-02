@@ -105,47 +105,15 @@
       "verified": true
     },
     {
-      "id": "d3e3",
-      "name": "ranjeev kumar",
-      "email": "ranjeevkumar1245@gmail.com",
-      "phone": "+919155062631",
-      "role": "tenant",
-      "verified": false
-    },
-    {
       "id": "a5cd",
       "name": "test",
       "email": "test@gmail.com",
       "phone": "1234567890",
       "role": "tenant",
       "verified": false
-    },
-    {
-      "id": "0782",
-      "name": "Sanjeev Kumar",
-      "email": "sanjeev77830@gmail.com",
-      "phone": "9155062633",
-      "role": "owner",
-      "verified": false
-    },
-    {
-      "id": "fc67",
-      "name": "Sanjeev Kumar",
-      "email": "sanjeev778300@gmail.com",
-      "phone": "+919155062633",
-      "password": "123123",
-      "role": "owner",
-      "verified": false
-    },
-    {
-      "id": "3ef5",
-      "name": "Melwin Fernandez",
-      "email": "melwin@gmail.com",
-      "phone": "+916380449631",
-      "password": "123123",
-      "role": "tenant",
-      "verified": false
     }
+    
+    
   ],
   "properties": [
     {
