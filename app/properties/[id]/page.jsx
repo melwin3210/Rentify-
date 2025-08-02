@@ -1,20 +1,37 @@
-"use client"
+import { notFound } from 'next/navigation'
+import PropertyDetailsClient from './property-details-client'
 
-import { useEffect, useState } from "react"
-import { useParams } from "next/navigation"
-import { useSelector } from "react-redux"
+export async function generateMetadata({ params }) {
+  try {
+    const response = await fetch(`http://localhost:3001/properties/${params.id}`)
+    if (!response.ok) return { title: 'Property Not Found' }
+    
+    const property = await response.json()
+    return {
+      title: `${property.title} - Rentify`,
+      description: `${property.description} Located in ${property.city}. $${property.price}/month`,
+      openGraph: {
+        title: property.title,
+        description: property.description,
+        images: property.images,
+      },
+    }
+  } catch {
+    return { title: 'Property Details - Rentify' }
+  }
+}
 
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { MapPin, Calendar, CheckCircle, XCircle, User, Phone, Mail, Clock } from "lucide-react"
-import Link from "next/link"
+export default async function PropertyDetailsPage({ params }) {
+  try {
+    const response = await fetch(`http://localhost:3001/properties/${params.id}`)
+    if (!response.ok) notFound()
+    
+    return <PropertyDetailsClient params={params} />
+  } catch {
+    notFound()
+  }
+}
 
-// Property and Owner interfaces removed for JavaScript version
-
-export default function PropertyDetailsPage() {
-  const params = useParams()
   const { user, isAuthenticated } = useSelector(state => state.auth)
   const [property, setProperty] = useState(null)
   const [owner, setOwner] = useState(null)
