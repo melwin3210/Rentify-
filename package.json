@@ -8,6 +8,7 @@
     "lint": "next lint",
     "start": "next start",
     "deploy": "vercel --prod",
+    "deploy:clean": "node scripts/deploy-clean.js",
     "preview": "vercel",
         "json-server": "json-server db.json --port 3001",
     "test": "jest",

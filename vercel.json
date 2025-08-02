@@ -1,5 +1,9 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": ".next",
-  "framework": "nextjs"
+  "framework": "nextjs",
+  "projectSettings": {
+    "name": "rentify-platform"
+  },
+  "alias": ["rentify-platform"]
 }
