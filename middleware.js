@@ -13,37 +13,44 @@ export function middleware(request) {
   const isProtectedRoute = protectedRoutes.some(route => pathname.startsWith(route))
   const isPublicRoute = publicRoutes.some(route => pathname.startsWith(route))
 
+  // Check for auth cookie for all routes (to handle admin redirects)
+  const authCookie = request.cookies.get('auth-user')
+  let user = null
+  
+  if (authCookie) {
+    try {
+      user = JSON.parse(authCookie.value)
+    } catch (error) {
+      // Invalid auth cookie
+    }
+  }
+
+  // Admin redirects for specific routes
+  if (user?.role === 'admin') {
+    if (pathname === '/properties' && !pathname.startsWith('/properties/')) {
+      return NextResponse.redirect(new URL('/admin/properties', request.url))
+    }
+    if (pathname === '/appointments') {
+      return NextResponse.redirect(new URL('/admin/appointments', request.url))
+    }
+  }
+
   if (isProtectedRoute) {
-    // In a real app, you'd check for a valid JWT token in cookies/headers
-    // For this demo, we'll check for a simple auth cookie
-    const authCookie = request.cookies.get('auth-user')
-    
-    if (!authCookie) {
+    if (!authCookie || !user) {
       // Redirect to login if not authenticated
       return NextResponse.redirect(new URL('/login', request.url))
     }
 
-    try {
-      const user = JSON.parse(authCookie.value)
-      
-      // Check role-based access
-      if (adminRoutes.some(route => pathname.startsWith(route)) && user.role !== 'admin') {
-        return NextResponse.redirect(new URL('/properties', request.url))
-      }
-      
-      if (ownerRoutes.some(route => pathname.startsWith(route)) && user.role !== 'owner') {
-        return NextResponse.redirect(new URL('/properties', request.url))
-      }
-    } catch (error) {
-      // Invalid auth cookie, redirect to login
-      return NextResponse.redirect(new URL('/login', request.url))
+    // Check role-based access
+    if (adminRoutes.some(route => pathname.startsWith(route)) && user.role !== 'admin') {
+      return NextResponse.redirect(new URL('/properties', request.url))
+    }
+    
+    if (ownerRoutes.some(route => pathname.startsWith(route)) && user.role !== 'owner') {
+      return NextResponse.redirect(new URL('/properties', request.url))
     }
   }
-  
-  // Allow access to public routes regardless of auth status
-  if (isPublicRoute) {
-    // No additional checks needed for public routes
-  }
+
 
   // Log requests in development
   if (process.env.NODE_ENV === 'development') {
