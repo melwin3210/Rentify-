@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Alert, AlertDescription } from "@/components/ui/alert"
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion"
 import { loginSuccess } from "@/redux/slices/authSlice"
 import { Building } from "lucide-react"
 import { useTranslation } from "@/hooks/use-translation"
@@ -112,20 +113,26 @@ export default function LoginPage() {
               />
             </div>
 
-            <div className="text-sm">
-              <p className="text-gray-600 mb-2">Demo accounts:</p>
-              <div className="space-y-1 text-xs">
-                <p>
-                  <strong>Admin:</strong> admin1@rentify.com / admin123
-                </p>
-                <p>
-                  <strong>Owner:</strong> owner4@rentify.com / owner123
-                </p>
-                <p>
-                  <strong>Tenant:</strong> tenant8@rentify.com / tenant123
-                </p>
-              </div>
-            </div>
+            <Accordion>
+              <AccordionItem value="demo-accounts">
+                <AccordionTrigger value="demo-accounts">
+                  Demo Accounts
+                </AccordionTrigger>
+                <AccordionContent value="demo-accounts">
+                  <div className="space-y-1">
+                    <p>
+                      <strong>Admin:</strong> admin1@rentify.com / admin123
+                    </p>
+                    <p>
+                      <strong>Owner:</strong> owner4@rentify.com / owner123
+                    </p>
+                    <p>
+                      <strong>Tenant:</strong> tenant8@rentify.com / tenant123
+                    </p>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
           </CardContent>
 
           <CardFooter className="flex flex-col space-y-4">
