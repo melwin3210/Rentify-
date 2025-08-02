@@ -1,37 +1,38 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { useSelector, useDispatch } from "react-redux"
 import { useSearchParams } from "next/navigation"
 import { PropertyCard } from "@/components/properties/property-card"
 import { PropertyFilters } from "@/components/properties/property-filters"
-
-// Property interface removed for JavaScript version
+import { setProperties, setLoading } from "@/redux/slices/propertySlice"
 
 export default function PropertiesPage() {
-  const [properties, setProperties] = useState([])
+  const dispatch = useDispatch()
+  const { properties, loading } = useSelector((state) => state.properties)
   const [filteredProperties, setFilteredProperties] = useState([])
-  const [loading, setLoading] = useState(true)
   const searchParams = useSearchParams()
 
   useEffect(() => {
     const fetchProperties = async () => {
+      dispatch(setLoading(true))
       try {
         const response = await fetch('http://localhost:3001/properties')
         if (response.ok) {
           const data = await response.json()
-          setProperties(data)
+          dispatch(setProperties(data))
         } else {
           console.error('Failed to fetch properties')
         }
       } catch (error) {
         console.error('Error fetching properties:', error)
       } finally {
-        setLoading(false)
+        dispatch(setLoading(false))
       }
     }
 
     fetchProperties()
-  }, [])
+  }, [dispatch])
 
   useEffect(() => {
     let filtered = [...properties]

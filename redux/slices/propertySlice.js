@@ -1,35 +1,6 @@
-import { createSlice, type PayloadAction } from "@reduxjs/toolkit"
+import { createSlice } from "@reduxjs/toolkit"
 
-interface Property {
-  id: number
-  title: string
-  description: string
-  city: string
-  type: string
-  price: number
-  images: string[]
-  ownerId: number
-  highlight: boolean
-  datePosted: string
-  verified: boolean
-  availability: "Available" | "Not Available"
-}
-
-interface PropertyState {
-  properties: Property[]
-  topProperties: Property[]
-  recentProperties: Property[]
-  selectedProperty: Property | null
-  loading: boolean
-  filters: {
-    city: string
-    type: string
-    minPrice: number
-    maxPrice: number
-  }
-}
-
-const initialState: PropertyState = {
+const initialState = {
   properties: [],
   topProperties: [],
   recentProperties: [],
@@ -47,22 +18,22 @@ const propertySlice = createSlice({
   name: "properties",
   initialState,
   reducers: {
-    setProperties: (state, action: PayloadAction<Property[]>) => {
+    setProperties: (state, action) => {
       state.properties = action.payload
     },
-    setTopProperties: (state, action: PayloadAction<Property[]>) => {
+    setTopProperties: (state, action) => {
       state.topProperties = action.payload
     },
-    setRecentProperties: (state, action: PayloadAction<Property[]>) => {
+    setRecentProperties: (state, action) => {
       state.recentProperties = action.payload
     },
-    setSelectedProperty: (state, action: PayloadAction<Property | null>) => {
+    setSelectedProperty: (state, action) => {
       state.selectedProperty = action.payload
     },
-    setLoading: (state, action: PayloadAction<boolean>) => {
+    setLoading: (state, action) => {
       state.loading = action.payload
     },
-    setFilters: (state, action: PayloadAction<Partial<PropertyState["filters"]>>) => {
+    setFilters: (state, action) => {
       state.filters = { ...state.filters, ...action.payload }
     },
   },
