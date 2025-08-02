@@ -136,6 +136,15 @@
       "password": "123123",
       "role": "owner",
       "verified": false
+    },
+    {
+      "id": "3ef5",
+      "name": "Melwin Fernandez",
+      "email": "melwin@gmail.com",
+      "phone": "+916380449631",
+      "password": "123123",
+      "role": "tenant",
+      "verified": false
     }
   ],
   "properties": [
@@ -203,7 +212,7 @@
       "ownerId": 7,
       "highlight": false,
       "datePosted": "2025-07-31",
-      "verified": false,
+      "verified": true,
       "availability": "Not Available",
       "id": "4"
     },
@@ -305,7 +314,7 @@
       "ownerId": 7,
       "highlight": false,
       "datePosted": "2025-07-31",
-      "verified": false,
+      "verified": true,
       "availability": "Not Available",
       "id": "11"
     },
@@ -441,7 +450,7 @@
       "ownerId": 7,
       "highlight": false,
       "datePosted": "2025-07-31",
-      "verified": false,
+      "verified": true,
       "availability": "Not Available",
       "id": "19"
     },
@@ -760,6 +769,17 @@
       "scheduledTime": "12:00",
       "message": "",
       "timestamp": "2025-07-31T20:54:01.856Z"
+    },
+    {
+      "id": "5972",
+      "propertyId": "12",
+      "userId": "3ef5",
+      "ownerId": 5,
+      "status": "pending",
+      "scheduledDate": "2025-08-15",
+      "scheduledTime": "12:00",
+      "message": "testing",
+      "timestamp": "2025-08-02T09:53:11.470Z"
     }
   ]
 }
