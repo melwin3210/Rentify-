@@ -2,16 +2,24 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { Menu, X, Home, User, Calendar, Settings } from 'lucide-react'
+import { useSelector } from 'react-redux'
+import { Menu, X, Home, User, Calendar, Settings, LogOut } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { isAuthenticated, user } = useSelector((state) => state.auth)
 
   const navigation = [
     { name: 'Properties', href: '/properties', icon: Home },
     { name: 'Owners', href: '/owners', icon: User },
     { name: 'Appointments', href: '/appointments', icon: Calendar },
+  ]
+
+  const authenticatedNavigation = [
+    ...navigation,
     { name: 'Profile', href: '/profile', icon: User },
   ]
 
@@ -27,7 +35,7 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-6">
-            {navigation.map((item) => (
+            {(isAuthenticated ? authenticatedNavigation : navigation).map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
@@ -38,14 +46,47 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* Auth Buttons */}
+          {/* Auth Section */}
           <div className="hidden md:flex items-center space-x-4">
-            <Link href="/login">
-              <Button variant="ghost">Login</Button>
-            </Link>
-            <Link href="/signup">
-              <Button>Sign Up</Button>
-            </Link>
+            {isAuthenticated ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+                    <Avatar className="h-8 w-8">
+                      <AvatarImage src={user?.avatar} alt={user?.name} />
+                      <AvatarFallback>{user?.name?.charAt(0) || 'U'}</AvatarFallback>
+                    </Avatar>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-56" align="end" forceMount>
+                  <DropdownMenuItem asChild>
+                    <Link href="/profile" className="flex items-center">
+                      <User className="mr-2 h-4 w-4" />
+                      Profile
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link href="/settings" className="flex items-center">
+                      <Settings className="mr-2 h-4 w-4" />
+                      Settings
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <LogOut className="mr-2 h-4 w-4" />
+                    Logout
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <>
+                <Link href="/login">
+                  <Button variant="ghost">Login</Button>
+                </Link>
+                <Link href="/signup">
+                  <Button>Sign Up</Button>
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -63,7 +104,7 @@ export default function Header() {
         {isMenuOpen && (
           <div className="md:hidden border-t py-4">
             <nav className="flex flex-col space-y-4">
-              {navigation.map((item) => (
+              {(isAuthenticated ? authenticatedNavigation : navigation).map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
@@ -75,12 +116,30 @@ export default function Header() {
                 </Link>
               ))}
               <div className="flex flex-col space-y-2 pt-4 border-t">
-                <Link href="/login" onClick={() => setIsMenuOpen(false)}>
-                  <Button variant="ghost" className="w-full justify-start">Login</Button>
-                </Link>
-                <Link href="/signup" onClick={() => setIsMenuOpen(false)}>
-                  <Button className="w-full">Sign Up</Button>
-                </Link>
+                {isAuthenticated ? (
+                  <>
+                    <div className="flex items-center space-x-2 px-3 py-2">
+                      <Avatar className="h-6 w-6">
+                        <AvatarImage src={user?.avatar} alt={user?.name} />
+                        <AvatarFallback>{user?.name?.charAt(0) || 'U'}</AvatarFallback>
+                      </Avatar>
+                      <span className="text-sm font-medium">{user?.name || 'User'}</span>
+                    </div>
+                    <Button variant="ghost" className="w-full justify-start" onClick={() => setIsMenuOpen(false)}>
+                      <LogOut className="mr-2 h-4 w-4" />
+                      Logout
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <Link href="/login" onClick={() => setIsMenuOpen(false)}>
+                      <Button variant="ghost" className="w-full justify-start">Login</Button>
+                    </Link>
+                    <Link href="/signup" onClick={() => setIsMenuOpen(false)}>
+                      <Button className="w-full">Sign Up</Button>
+                    </Link>
+                  </>
+                )}
               </div>
             </nav>
           </div>
