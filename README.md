@@ -1,7 +1,8 @@
 # Rentify - Rental Property Management Platform
 
 A comprehensive Next.js application for managing rental properties with features for property owners, tenants, and administrators.
-
+ ## PROD URL
+ https://rentify-dlkm85cff-melwin-fernandezs-projects.vercel.app
 ## Features
 
 - 🏠 Property listing and management
