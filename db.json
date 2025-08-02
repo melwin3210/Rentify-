@@ -149,23 +149,6 @@
   ],
   "properties": [
     {
-      "id": "1",
-      "title": "Luxury Apartment in Los Angeles",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      "city": "Los Angeles",
-      "type": "Apartment",
-      "price": 1292,
-      "images": [
-        "https://picsum.photos/id/1015/800/600",
-        "https://picsum.photos/id/1016/800/600"
-      ],
-      "ownerId": 7,
-      "highlight": false,
-      "datePosted": "2025-07-20",
-      "verified": true,
-      "availability": "Not Available"
-    },
-    {
       "id": "2",
       "title": "Cozy Studio in Phoenix",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
@@ -597,22 +580,6 @@
       "highlight": false,
       "datePosted": "2025-08-02",
       "verified": false,
-      "availability": "Available"
-    },
-    {
-      "id": "f672",
-      "title": "456789",
-      "description": "fghjkl",
-      "city": "Chicago",
-      "type": "Condo",
-      "price": 2345678,
-      "images": [
-        "https://i0.wp.com/www.innovationquarter.com/wp-content/uploads/2022/01/winston-salem-apartment-complex_1200w.jpeg?resize=1024%2C684&ssl=1"
-      ],
-      "ownerId": 4,
-      "highlight": false,
-      "datePosted": "2025-08-02",
-      "verified": true,
       "availability": "Available"
     }
   ],

@@ -22,12 +22,7 @@ export default function LoginPage() {
   const router = useRouter()
   const dispatch = useDispatch()
 
-  // Mock users data (with passwords for demo)
-  const mockUsers = [
-    { id: 1, role: "admin", name: "Admin Alice", email: "admin1@rentify.com", phone: "1234567800", password: "admin123", verified: true },
-    { id: 4, role: "owner", name: "Owner Diana", email: "owner4@rentify.com", phone: "1234567803", password: "owner123", verified: true },
-    { id: 8, role: "tenant", name: "Tenant Hannah", email: "tenant8@rentify.com", phone: "1234567807", password: "tenant123", verified: true },
-  ]
+
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -35,21 +30,19 @@ export default function LoginPage() {
     setError("")
 
     try {
-      // Fetch all users from database
-      const response = await fetch('http://localhost:3001/users')
-      const allUsers = await response.json()
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      })
       
-      // Combine mock users with database users
-      const combinedUsers = [...mockUsers, ...allUsers]
+      const data = await response.json()
       
-      // Find user by email and validate password
-      const user = combinedUsers.find((u) => u.email === email && u.password === password)
-
-      if (user) {
-        dispatch(loginSuccess(user))
+      if (response.ok && data.user) {
+        dispatch(loginSuccess(data.user))
 
         // Redirect based on role
-        switch (user.role) {
+        switch (data.user.role) {
           case "admin":
             router.push("/admin")
             break
@@ -63,7 +56,7 @@ export default function LoginPage() {
             router.push("/")
         }
       } else {
-        setError("Invalid email or password")
+        setError(data.error || "Invalid email or password")
       }
     } catch (error) {
       console.error('Login error:', error)
