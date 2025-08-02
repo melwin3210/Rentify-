@@ -11,8 +11,10 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { loginSuccess } from "@/redux/slices/authSlice"
 import { Building } from "lucide-react"
+import { useTranslation } from "@/hooks/use-translation"
 
 export default function LoginPage() {
+  const { t } = useTranslation()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
@@ -79,7 +81,7 @@ export default function LoginPage() {
             <Building className="h-8 w-8 text-primary mr-2" />
             <span className="text-2xl font-bold text-primary">Rentify</span>
           </div>
-          <CardTitle className="text-2xl text-center">Sign in to your account</CardTitle>
+          <CardTitle className="text-2xl text-center">{t("login")}</CardTitle>
           <CardDescription className="text-center">
             Enter your email and password to access your account
           </CardDescription>
@@ -94,7 +96,7 @@ export default function LoginPage() {
             )}
 
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email">{t("email")}</Label>
               <Input
                 id="email"
                 type="email"
@@ -106,7 +108,7 @@ export default function LoginPage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password">{t("password")}</Label>
               <Input
                 id="password"
                 type="password"
@@ -135,13 +137,13 @@ export default function LoginPage() {
 
           <CardFooter className="flex flex-col space-y-4">
             <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? "Signing in..." : "Sign in"}
+              {loading ? t("loading") : t("login")}
             </Button>
 
             <div className="text-center text-sm">
               {"Don't have an account? "}
               <Link href="/signup" className="text-primary hover:underline">
-                Sign up
+                {t("signup")}
               </Link>
             </div>
           </CardFooter>

@@ -9,8 +9,11 @@ import { Menu, X, Home, User, Calendar, Settings, LogOut } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import LanguageSelector from './language-selector'
+import { useTranslation } from '@/hooks/use-translation'
 
 export default function Header() {
+  const { t } = useTranslation()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const { isAuthenticated, user } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
@@ -23,14 +26,14 @@ export default function Header() {
   }
 
   const navigation = [
-    { name: 'Properties', href: '/properties', icon: Home },
+    { name: t('properties'), href: '/properties', icon: Home },
     { name: 'Owners', href: '/owners', icon: User },
     { name: 'Appointments', href: '/appointments', icon: Calendar },
   ]
 
   const authenticatedNavigation = [
     ...navigation,
-    { name: 'Profile', href: '/profile', icon: User },
+    { name: t('profile'), href: '/profile', icon: User },
   ]
 
   return (
@@ -58,6 +61,7 @@ export default function Header() {
 
           {/* Auth Section */}
           <div className="hidden md:flex items-center space-x-4">
+            <LanguageSelector />
             {isAuthenticated ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -72,7 +76,7 @@ export default function Header() {
                   <DropdownMenuItem asChild>
                     <Link href="/profile" className="flex items-center">
                       <User className="mr-2 h-4 w-4" />
-                      Profile
+                      {t('profile')}
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
@@ -90,10 +94,10 @@ export default function Header() {
             ) : (
               <>
                 <Link href="/login">
-                  <Button variant="ghost">Login</Button>
+                  <Button variant="ghost">{t('login')}</Button>
                 </Link>
                 <Link href="/signup">
-                  <Button>Sign Up</Button>
+                  <Button>{t('signup')}</Button>
                 </Link>
               </>
             )}
@@ -143,10 +147,10 @@ export default function Header() {
                 ) : (
                   <>
                     <Link href="/login" onClick={() => setIsMenuOpen(false)}>
-                      <Button variant="ghost" className="w-full justify-start">Login</Button>
+                      <Button variant="ghost" className="w-full justify-start">{t('login')}</Button>
                     </Link>
                     <Link href="/signup" onClick={() => setIsMenuOpen(false)}>
-                      <Button className="w-full">Sign Up</Button>
+                      <Button className="w-full">{t('signup')}</Button>
                     </Link>
                   </>
                 )}

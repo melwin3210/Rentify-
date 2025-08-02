@@ -5,6 +5,7 @@ import { useEffect } from "react"
 import { store } from "@/redux/store"
 import { loginSuccess } from "@/redux/slices/authSlice"
 import { ThemeProvider } from "@/components/theme-provider"
+import { TranslationProvider } from "@/hooks/use-translation"
 
 function AuthRehydrator({ children }) {
   useEffect(() => {
@@ -31,11 +32,13 @@ function AuthRehydrator({ children }) {
 export function Providers({ children }) {
   return (
     <Provider store={store}>
-      <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-        <AuthRehydrator>
-          {children}
-        </AuthRehydrator>
-      </ThemeProvider>
+      <TranslationProvider>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <AuthRehydrator>
+            {children}
+          </AuthRehydrator>
+        </ThemeProvider>
+      </TranslationProvider>
     </Provider>
   )
 }
